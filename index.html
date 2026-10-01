@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title data-i18n="pageTitle">3D 매듭 뷰어</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="app">
+    <aside id="panel">
+      <div class="lang-switch">
+        <button type="button" class="lang-btn" data-lang="ko">한국어</button>
+        <button type="button" class="lang-btn" data-lang="ja">日本語</button>
+      </div>
+      <h1 data-i18n="pageTitle">3D 매듭 뷰어</h1>
+      <p class="hint" data-i18n-html="introHint">PD 코드를 입력하고 렌더링하세요. 예: <code>X[1,4,2,5],X[3,6,4,1],X[5,2,6,3]</code></p>
+
+      <label for="example-select" data-i18n="exampleLabel">예시 매듭</label>
+      <select id="example-select">
+        <option value="" data-i18n="exampleDefaultOption">-- 예시 선택 --</option>
+      </select>
+
+      <label for="pd-input" data-i18n="pdLabel">PD 코드</label>
+      <textarea id="pd-input" rows="4" placeholder="X[1,4,2,5],X[3,6,4,1],X[5,2,6,3]"></textarea>
+
+      <button id="render-btn" data-i18n="renderBtn">렌더링</button>
+      <div id="error-box" class="error hidden"></div>
+      <div id="stats" class="stats hidden"></div>
+
+      <hr />
+
+      <h2 data-i18n="controlPointsHeading">제어점 조작</h2>
+      <p class="hint" data-i18n="controlPointsHint">
+        노란 점을 드래그하면 매듭 모양을 직접 바꿀 수 있습니다 · 매듭은
+        스스로를 통과하지 못하므로 다른 가닥에 닿으면 더 이상 밀리지
+        않습니다 (크로싱이 절대 바뀌지 않습니다).
+      </p>
+      <div class="button-row">
+        <button id="add-point-btn" class="toggle" data-i18n="addPointBtn">+ 점 추가</button>
+        <button id="delete-point-btn" class="toggle" data-i18n="deletePointBtn">− 점 삭제</button>
+      </div>
+      <p class="hint" id="mode-hint"></p>
+
+      <hr />
+
+      <h2 data-i18n="renderStyleHeading">렌더링 스타일</h2>
+      <label for="render-style" data-i18n="renderStyleLabel">스타일</label>
+      <select id="render-style">
+        <option value="lit" selected data-i18n="styleLitOption">기본 (라이팅)</option>
+        <option value="toon" data-i18n="styleToonOption">카툰 (테두리)</option>
+        <option value="flat" data-i18n="styleFlatOption">플랫 (무광)</option>
+      </select>
+
+      <div id="line-color-container"></div>
+      <div class="slider-row">
+        <label for="handle-color" data-i18n="handleColorLabel">제어점 색깔</label>
+        <input type="color" id="handle-color" value="#ffd23f" />
+      </div>
+
+      <hr />
+
+      <h2 data-i18n="rotationHeading">회전 조작</h2>
+      <p class="hint" data-i18n="rotationHint">빈 곳을 마우스로 드래그: 매듭 회전 (아래 X/Y/Z 슬라이더와 동기화) · 스크롤: 확대/축소</p>
+
+      <div class="slider-row">
+        <label for="rot-x" data-i18n="rotXLabel">X축 회전</label>
+        <input type="range" id="rot-x" min="0" max="360" value="0" />
+      </div>
+      <div class="slider-row">
+        <label for="rot-y" data-i18n="rotYLabel">Y축 회전</label>
+        <input type="range" id="rot-y" min="0" max="360" value="0" />
+      </div>
+      <div class="slider-row">
+        <label for="rot-z" data-i18n="rotZLabel">Z축 회전</label>
+        <input type="range" id="rot-z" min="0" max="360" value="0" />
+      </div>
+      <button id="reset-rot-btn" class="secondary" data-i18n="resetRotBtn">회전 초기화</button>
+
+      <div class="checkbox-row">
+        <input type="checkbox" id="auto-rotate" />
+        <label for="auto-rotate" data-i18n="autoRotateLabel">자동 회전</label>
+        <select id="auto-axis">
+          <option value="x" data-i18n="axisXOption">X축</option>
+          <option value="y" selected data-i18n="axisYOption">Y축</option>
+          <option value="z" data-i18n="axisZOption">Z축</option>
+        </select>
+      </div>
+
+      <div class="slider-row">
+        <label for="tube-radius" data-i18n="tubeRadiusLabel">튜브 굵기</label>
+        <input type="range" id="tube-radius" min="0.01" max="0.15" step="0.005" value="0.05" />
+      </div>
+    </aside>
+    <main id="viewport"></main>
+  </div>
+
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+    }
+  }
+  </script>
+  <script type="module" src="main.js"></script>
+</body>
+</html>
