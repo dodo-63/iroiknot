@@ -30,6 +30,7 @@ const langButtons = document.querySelectorAll(".lang-btn");
 const TRANSLATIONS = {
   ko: {
     pageTitle: "3D 매듭 뷰어",
+    link2D: "2D 보기 →",
     introHint: 'PD 코드를 입력하고 렌더링하세요. 예: <code>X[1,4,2,5],X[3,6,4,1],X[5,2,6,3]</code>',
     exampleLabel: "예시 매듭",
     exampleDefaultOption: "-- 예시 선택 --",
@@ -71,6 +72,7 @@ const TRANSLATIONS = {
   },
   ja: {
     pageTitle: "3D結び目ビューア",
+    link2D: "2D表示 →",
     introHint: 'PDコードを入力してレンダリングしてください。例: <code>X[1,4,2,5],X[3,6,4,1],X[5,2,6,3]</code>',
     exampleLabel: "サンプルの結び目",
     exampleDefaultOption: "-- サンプルを選択 --",

@@ -240,3 +240,25 @@ button.toggle.active {
 #viewport canvas {
   display: block;
 }
+
+.top-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.view-link {
+  font-size: 12px;
+  color: var(--accent);
+  text-decoration: none;
+  border: 1px solid var(--accent);
+  border-radius: 999px;
+  padding: 4px 10px;
+  white-space: nowrap;
+}
+
+.view-link:hover {
+  background: var(--accent);
+  color: #06101f;
+}
